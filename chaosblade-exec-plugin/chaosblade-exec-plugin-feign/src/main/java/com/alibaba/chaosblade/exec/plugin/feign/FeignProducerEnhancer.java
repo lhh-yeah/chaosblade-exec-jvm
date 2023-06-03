@@ -47,7 +47,7 @@ public class FeignProducerEnhancer extends BeforeEnhancer implements FeignConsta
 
     private String getTemplate(Object[] methodArguments) throws Exception {
         Object requestTemplateObj = methodArguments[0];
-        Object urlBuilderObj = ReflectUtil.getFieldValue(requestTemplateObj, "url", false);
+        Object urlBuilderObj = ReflectUtil.invokeMethod(requestTemplateObj, "url");
         return ReflectUtil.invokeMethod(urlBuilderObj, "toString");
     }
 
